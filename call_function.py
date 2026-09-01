@@ -4,6 +4,7 @@ from tools.write_files import write_file, schema_write_file
 from tools.run_python_file import run_python_file, schema_run_python_file
 import json
 from collections.abc import Callable
+from config import WORKING_DIRECTORY
 
 available_functions = [
     schema_get_files_info,
@@ -33,7 +34,7 @@ def call_function(tool_call, verbose: bool = False) -> dict:
         "tool_call_id": tool_call.id,
         "content": f"Error: Unknown function: {function_name}",
         }
-    function_args["working_directory"] = "./calculator"
+    function_args["working_directory"] = WORKING_DIRECTORY
     result = function_map[function_name](**function_args)
     return {
         "role": "tool",
