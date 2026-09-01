@@ -1,4 +1,10 @@
-from functions.get_file_content import get_file_content
+import os
+import sys
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, ROOT)
+os.chdir(ROOT)
+
+from tools.get_file_content import get_file_content
 
 
 result = get_file_content("calculator", "lorem.txt")

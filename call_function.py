@@ -1,7 +1,7 @@
-from functions.get_file_content import get_file_content, schema_get_file_content
-from functions.get_files_infos import get_files_info, schema_get_files_info
-from functions.write_files import write_file, schema_write_file
-from functions.run_python_file import run_python_file, schema_run_python_file
+from tools.get_file_content import get_file_content, schema_get_file_content
+from tools.get_files_infos import get_files_info, schema_get_files_info
+from tools.write_files import write_file, schema_write_file
+from tools.run_python_file import run_python_file, schema_run_python_file
 import json
 from collections.abc import Callable
 
