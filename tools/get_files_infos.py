@@ -19,8 +19,8 @@ schema_get_files_info = {
 
 def get_files_info(working_directory: str, directory: str = ".") -> str:
     try:
-        working_path_abs = os.path.abspath(working_directory)
-        target_dir = os.path.normpath(os.path.join(working_path_abs, directory))
+        working_path_abs = os.path.realpath(working_directory)
+        target_dir = os.path.realpath(os.path.join(working_path_abs, directory))
         valid_target_dir = os.path.commonpath([working_path_abs, target_dir]) == working_path_abs
         if not valid_target_dir:
             return f'Error: Cannot list "{directory}" as it is outside the permitted working directory'

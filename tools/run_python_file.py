@@ -26,8 +26,8 @@ schema_run_python_file = {
 
 def run_python_file(working_directory: str, file_path: str, args: list[str] | None = None) -> str:
     try:
-        abs_file_path = os.path.abspath(working_directory)
-        target_file = os.path.normpath(os.path.join(abs_file_path, file_path))
+        abs_file_path = os.path.realpath(working_directory)
+        target_file = os.path.realpath(os.path.join(abs_file_path, file_path))
         valid_target_file = os.path.commonpath([abs_file_path, target_file]) == abs_file_path
         if not valid_target_file:
             return f'Error: Cannot execute "{file_path}" as it is outside the permitted working directory'

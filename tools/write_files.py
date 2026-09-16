@@ -24,8 +24,8 @@ schema_write_file = {
 
 def write_file(working_directory: str, file_path: str, content: str) -> str:
     try:
-        working_path_abs = os.path.abspath(working_directory)
-        target_file = os.path.normpath(os.path.join(working_path_abs, file_path))
+        working_path_abs = os.path.realpath(working_directory)
+        target_file = os.path.realpath(os.path.join(working_path_abs, file_path))
         valid_target_file = os.path.commonpath([working_path_abs, target_file]) == working_path_abs
         if not valid_target_file:
             return f'Error: Cannot write to "{file_path}" as it is outside the permitted working directory'
