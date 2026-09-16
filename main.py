@@ -46,8 +46,6 @@ def main():
 
         for tool_call in message.tool_calls:
             result_message = call_function(tool_call, verbose=args.verbose)
-            if not result_message.get("content"):
-                raise RuntimeError(f"Tool call {tool_call.function.name} returned empty content.")
             messages.append(result_message)
             if args.verbose:
                 print(f"-> {result_message['content']}")

@@ -35,7 +35,14 @@ def call_function(tool_call, verbose: bool = False) -> dict:
         "content": f"Error: Unknown function: {function_name}",
         }
     function_args["working_directory"] = WORKING_DIRECTORY
-    result = function_map[function_name](**function_args)
+    try:
+        result = function_map[function_name](**function_args)
+    except TypeError as e:
+        result = f"Error: invalid arguments for {function_name}: {e}"
+    except Exception as e:
+        result = f"Error: {function_name} failed: {e}"
+    if not result:
+        result = f"Error: {function_name} returned no output"
     return {
         "role": "tool",
         "tool_call_id": tool_call.id,
